@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation" data-turbo-cache="false">
+  <div id="error_explanation" class="text-red-500 transition-opacity duration-300 opacity-100" data-turbo-cache="false">
     <h2>
       <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
@@ -8,8 +8,27 @@
     </h2>
     <ul>
       <% resource.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
+        <li>- <%= message %></li>
       <% end %>
     </ul>
   </div>
+  <script>
+    const errorExplanation = document.getElementById('error_explanation');
+    
+    function showErrorMessage() {
+      errorExplanation.classList.remove('opacity-0');
+      errorExplanation.classList.add('opacity-100');
+      setTimeout(() => {
+        errorExplanation.classList.remove('opacity-100');
+        errorExplanation.classList.add('opacity-0');
+      }, 5000)
+      setTimeout(() => {
+        errorExplanation.classList.add('hidden');
+      }, 5300)
+    }
+
+    if (errorExplanation) {
+      showErrorMessage();
+    }
+  </script>
 <% end %>
