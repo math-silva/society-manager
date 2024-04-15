@@ -3,7 +3,14 @@ require 'rails_helper'
 RSpec.describe "Pages", type: :request do
   describe "GET /" do
     context "when signed in" do
-      let(:user) { users(:test) }
+      let(:user) { 
+        User.new(
+          first_name: "Test", 
+          last_name: "User", 
+          email: "test@example.org", 
+          password: Devise::Encryptor.digest(User, 'Password1!')
+        )
+      }
       before { sign_in(user) }
       it "returns http success" do
         get "/"
