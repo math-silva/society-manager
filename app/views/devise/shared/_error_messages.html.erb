@@ -1,5 +1,5 @@
 <% if resource.errors.any? %>
-  <div id="error_explanation" class="text-red-500 transition-opacity duration-300 opacity-100" data-turbo-cache="false">
+  <div id="error_explanation" class="mb-3 text-red-500 transition-opacity duration-300 opacity-100" data-turbo-cache="false">
     <h2>
       <%= I18n.t("errors.messages.not_saved",
                  count: resource.errors.count,
@@ -21,10 +21,10 @@
       setTimeout(() => {
         errorExplanation.classList.remove('opacity-100');
         errorExplanation.classList.add('opacity-0');
-      }, 5000)
+      }, 8000)
       setTimeout(() => {
         errorExplanation.classList.add('hidden');
-      }, 5300)
+      }, 8300)
     }
 
     if (errorExplanation) {
