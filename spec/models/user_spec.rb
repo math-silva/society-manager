@@ -92,5 +92,12 @@ RSpec.describe User, type: :model do
       expect(invalid_user).not_to be_valid
       expect(invalid_user.errors[:last_name]).to include("can't be blank")
     end
+
+    it "is valid with a password containing multiple special characters" do
+      valid_user.password = "Password1!@#$%"
+      expect(valid_user).to be_valid
+    end
+
+    
   end
 end
