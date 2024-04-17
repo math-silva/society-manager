@@ -94,10 +94,9 @@ RSpec.describe User, type: :model do
     end
 
     it "is valid with a password containing multiple special characters" do
-      valid_user.password = "Password1!@#$%"
-      expect(valid_user).to be_valid
+      valid_user_multiple_sp_char = valid_user.dup
+      valid_user_multiple_sp_char.password = "Password1!@#$%"
+      expect(valid_user_multiple_sp_char).to be_valid
     end
-
-    
   end
 end
