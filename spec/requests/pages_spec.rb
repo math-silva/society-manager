@@ -26,5 +26,13 @@ RSpec.describe "Pages", type: :request do
       end
     end
   end
+  
+  it "returns http success and includes user name even with a different user" do
+    different_user = User.create(first_name: "Another", last_name: "User", email: "another@example.org", password: Devise::Encryptor.digest(User, "AnotherPassword1!"))
+    sign_in(different_user)
+    get "/"
+    expect(response).to have_http_status(:success)
+    expect(response.body).to include(different_user.first_name)
+  end
 
 end
