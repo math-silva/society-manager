@@ -75,5 +75,11 @@ RSpec.describe User, type: :model do
       user.password = "Password1!@#$%"
       expect(user).to be_valid
     end
+
+    it "is invalid without a password" do
+      user.password = nil
+      expect(user).not_to be_valid
+      expect(user.errors[:password]).to include("can't be blank")
+    end
   end
 end
